@@ -6,7 +6,7 @@ module Moneypenny
   module Responders
     class Weather
       def self.respond(message)
-        if message.downcase.include?('weather') && (query = message.match(/in\ (.+)\z/i))
+        if message.downcase.include?('weather') && (query = message.match(/in\ (.+)\?/i))
           doc = Nokogiri::HTML open("http://api.wunderground.com/auto/wui/geo/WXCurrentObXML/index.xml?query=#{CGI::escape query[1]}")
           location    = doc.xpath('//current_observation/display_location/full').text.gsub(',', '')
           weather     = doc.xpath('//current_observation/weather').text.downcase.strip
