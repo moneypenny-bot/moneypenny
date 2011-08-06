@@ -1,6 +1,6 @@
 = moneypenny
 
-Description goes here.
+Moneypenny is an executive assistant.
 
 == Contributing to moneypenny
  

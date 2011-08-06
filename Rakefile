@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "moneypenny"
   gem.homepage = "http://github.com/jwulff/moneypenny"
   gem.license = "MIT"
-  gem.summary = %Q{Moneypenny is a fantastic executive assistant.}
-  gem.description = %Q{Moneypenny is a fantastic executive assistant.}
+  gem.summary = %Q{Moneypenny is an executive assistant.}
+  gem.description = %Q{Moneypenny is an executive assistant.}
   gem.email = "johnw@orcasnet.com"
   gem.authors = ["John Wulff"]
   # dependencies defined in Gemfile
