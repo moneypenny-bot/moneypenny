@@ -5,7 +5,7 @@ module Moneypenny
     def initialize(connection, logger)
       @connection = connection
       @logger     = logger
-      connection.say 'hello!'
+      connection.say 'Hello, Moneypenny here at your service.'
       connection.listen do |message|
         hear message
       end
@@ -21,9 +21,16 @@ module Moneypenny
       if message.match(/\Amoneypenny/i)
         message.gsub! /\Amoneypenny(\,|)/i, ''
         message.strip!
+        responded = false
         Responders.constants.each do |responder|
           response = eval("Responders::#{responder}").respond message
-          say(response) if response
+          if response
+            say response
+            responded = true
+          end 
+        end
+        unless responded
+          say "Sorry, I do not know how to respond to that."
         end
       end
     end
