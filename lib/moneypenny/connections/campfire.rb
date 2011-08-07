@@ -15,7 +15,11 @@ module Moneypenny
       
       def listen(&block)
         @room.listen do |message|
-          block.call(message['body']) if message['user']['id'] != @id
+          begin
+            block.call(message['body']) if message['user']['id'] != @id
+          rescue Exception => exception
+            puts exception.to_s
+          end
         end
       end
     end

@@ -6,7 +6,7 @@ module Moneypenny
   module Responders
     class Wikipedia
       def self.respond(message)
-        if (query = message.match(/\Awhat\ is\ (.+)\?\z/i))
+        if (query = message.match(/\Awhat\ is\ (.+)(\?|)\z/i))
           query = query[1]
           agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.107 Safari/535.1'
           response = open("http://en.wikipedia.org/w/api.php?action=opensearch&search=#{CGI::escape query}&format=xml&limit=1", 'User-Agent' => agent).read
