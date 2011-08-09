@@ -1,9 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'twitter-stream', '0.1.12'
-gem 'faraday', '0.5.1'
 gem 'tinder', '1.4.4'
 gem 'nokogiri', '1.5.0'
+gem 'json',     '1.5.3'
 
 group :development do
   gem 'rspec', '~> 2.3.0'
