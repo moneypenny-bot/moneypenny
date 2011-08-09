@@ -10,7 +10,11 @@ module Moneypenny
       end
       
       def say(message)
-        @room.speak message
+        if message.include?("\n")
+          @room.paste message
+        else
+          @room.speak message
+        end
       end
       
       def listen(&block)

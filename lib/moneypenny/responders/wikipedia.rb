@@ -5,6 +5,10 @@ require 'cgi'
 module Moneypenny
   module Responders
     class Wikipedia
+      def self.help
+        [ 'what is Soap?', 'returns Wikipedia description for Soap' ]
+      end
+
       def self.respond(message)
         if (query = message.match(/\Awhat\ is\ (.+)(\?|)\z/i))
           query = query[1]

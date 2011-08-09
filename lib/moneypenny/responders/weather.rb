@@ -5,6 +5,10 @@ require 'cgi'
 module Moneypenny
   module Responders
     class Weather
+      def self.help
+        [ 'weather in Seattle?', 'returns the current weather in Seattle' ]
+      end
+
       def self.respond(message)
         if message.downcase.include?('weather') && (query = message.match(/in\ (.+)(\?|)\z/i))
           doc = Nokogiri::HTML open("http://api.wunderground.com/auto/wui/geo/WXCurrentObXML/index.xml?query=#{CGI::escape query[1]}")

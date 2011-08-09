@@ -1,6 +1,8 @@
-= moneypenny
+= Moneypenny
 
-Moneypenny is an executive assistant.
+Moneypenny is a simple chat bot.  Moneypenny works with Campfire but could be 
+made to work with other chat rooms easily.  See lib/moneypenny/responders,
+it's very easy to add more responders.
 
 == Contributing to moneypenny
  
