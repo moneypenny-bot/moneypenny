@@ -18,8 +18,8 @@ module Moneypenny
 
     def hear(message)
       logger.debug "Heard: #{message}"
-      if message.match(/\Amoneypenny/i)
-        message.gsub! /\Amoneypenny(\,|)/i, ''
+      if message.match(/\A(mp|moneypenny)/i)
+        message.gsub! /\A(mp|moneypenny)(\,|)/i, ''
         message.strip!
         responded = false
         Responders.constants.each do |responder|
