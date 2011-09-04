@@ -11,8 +11,8 @@ module Moneypenny
     def self.respond(message)
       if (query = message.match(/\Ahelp\z/i))
         helps = []
-        Responders.constants.each do |responder|
-          helps << eval("Responders::#{responder}").help rescue nil
+        Responder.subclasses.each do |responder|
+          helps << responder.help rescue nil
         end
         ljust = helps.collect{|x| x[0].size }.max + 3
         helps.collect!{ |x| x[0].to_s.ljust(ljust) + x[1].to_s }
