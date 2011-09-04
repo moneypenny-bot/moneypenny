@@ -1,19 +1,25 @@
 #!/usr/bin/env ruby
 require File.dirname(__FILE__) + '/../lib/moneypenny'
 require 'logger'
+require 'yaml'
 
 subdomain = ARGV[0]
 room      = ARGV[1]
 api_token = ARGV[2]
 
-if !subdomain || !room || !api_token
-  puts "./moneypenny SUBDOMAIN ROOM API_TOKEN"
+case
+when ARGV[0] == 'sample_config'
+  puts File.read( File.dirname(__FILE__) + "/../examples/sample_config.yml" )
+  exit
+when ARGV[0] && File.exists?( ARGV[0] )
+  config = YAML::load_file( ARGV[0] )
+else
+  puts "./moneypenny (path_to_config_file|sample_config)"
   exit
 end
 
-connection   = Moneypenny::Connections::Campfire.new subdomain, room, api_token
 logger       = Logger.new STDOUT
 logger.level = Logger::DEBUG
-moneypenny   = Moneypenny::Moneypenny.new connection, logger
+moneypenny   = Moneypenny::Moneypenny.new config, logger
 moneypenny.say 'Hello, Moneypenny here at your service.'
 moneypenny.listen!

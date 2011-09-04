@@ -5,19 +5,27 @@ module Moneypenny
   class Moneypenny
     attr_accessor :connection, :logger
 
-    def initialize(connection, logger)
-      @connection = connection
+    def initialize(config, logger)
+      @config     = config
       @logger     = logger
     end
 
+    def connection
+      @connection ||= Connections::Campfire.new(
+        @config[:campfire][:subdomain],
+        @config[:campfire][:room],
+        @config[:campfire][:api_token]
+      )
+    end
+
     def listen!
-      @connection.listen do |message|
+      connection.listen do |message|
         hear message
       end
     end
 
     def say(message)
-      @connection.say message
+      connection.say message
       logger.debug "Said:  #{message}"
     end
 

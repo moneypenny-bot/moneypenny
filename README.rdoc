@@ -10,7 +10,10 @@ Visit https://moneypenny-bot.campfirenow.com/b8f74 to see Moneypenny in action.
 
 == Campfire Usage
 
-bundle exec bin/moneypenny SUBDOMAIN ROOM API_TOKEN
+bundle exec bin/moneypenny path/to/config.yml
+
+To see a sample config:
+bundle exec bin/moneypenny sample_config
 
 == Contributing to moneypenny
  

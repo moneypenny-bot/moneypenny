@@ -4,7 +4,8 @@ describe "Moneypenny" do
   before(:each) do
     @connection = mock('connection')
     @logger = NullLogger.new
-    @bot = Moneypenny::Moneypenny.new(@connection, @logger)
+    @bot = Moneypenny::Moneypenny.new({}, @logger)
+    @bot.connection = @connection
   end
 
   describe "say" do
