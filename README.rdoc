@@ -6,7 +6,7 @@ it's very easy to add more responders.
 
 == Demo
 
-Visit https://moneypenny1.campfirenow.com/b8f74 to see Moneypenny in action.
+Visit https://moneypenny-bot.campfirenow.com/b8f74 to see Moneypenny in action.
 
 == Campfire Usage
 
