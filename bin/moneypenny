@@ -6,6 +6,11 @@ subdomain = ARGV[0]
 room      = ARGV[1]
 api_token = ARGV[2]
 
+if !subdomain || !room || !api_token
+  puts "./moneypenny SUBDOMAIN ROOM API_TOKEN"
+  exit
+end
+
 connection   = Moneypenny::Connections::Campfire.new subdomain, room, api_token
 logger       = Logger.new STDOUT
 logger.level = Logger::DEBUG
