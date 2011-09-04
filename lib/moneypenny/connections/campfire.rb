@@ -39,6 +39,7 @@ module Moneypenny
               block.call(message['body']) if message['user']['id'] != @id
             rescue Exception => exception
               puts exception.to_s
+              puts "\t#{exception.backtrace.join "\n\t"}"
             end
           end
         rescue Tinder::ListenFailed
