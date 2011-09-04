@@ -15,6 +15,7 @@ require 'moneypenny/responders/wikipedia'
 require 'moneypenny/responders/image'
 require 'moneypenny/responders/help'
 require 'moneypenny/responders/define'
+require 'moneypenny/responders/version'
 
 #listeners
 require 'moneypenny/listeners/thats_what_she_said'

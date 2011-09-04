@@ -1,4 +1,7 @@
 module Moneypenny
+  ROOT_PATH = File.expand_path(File.join(File.dirname(__FILE__), '..', '..'))
+  VERSION = (git_sha = `cd #{ROOT_PATH} && git rev-parse HEAD`.strip) == '' ? "v#{File.read(File.join(ROOT_PATH, 'VERSION')).strip}" : git_sha
+
   class Moneypenny
     attr_accessor :connection, :logger
 
