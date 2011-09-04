@@ -5,7 +5,7 @@ describe "Moneypenny" do
     @connection = mock('connection')
     @logger = NullLogger.new
     @bot = Moneypenny::Moneypenny.new({}, @logger)
-    @bot.stubs(:connection).returns(@connection)
+    @bot.connection = @connection
   end
 
   describe "say" do
