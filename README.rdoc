@@ -4,6 +4,10 @@ Moneypenny is a simple chat bot.  Moneypenny works with Campfire but could be
 made to work with other chat rooms easily.  See lib/moneypenny/responders,
 it's very easy to add more responders.
 
+== Demo
+
+Visit https://moneypenny1.campfirenow.com/b8f74 to see Moneypenny in action.
+
 == Campfire Usage
 
 bundle exec bin/moneypenny SUBDOMAIN ROOM API_TOKEN
