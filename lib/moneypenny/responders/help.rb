@@ -14,7 +14,8 @@ module Moneypenny
         Responder.all.each do |responder|
           helps << responder.help rescue nil
         end
-        ljust = helps.collect{|x| x[0].size }.max + 3
+        helps.sort!{ |a, b| a[0] <=> b[0] }
+        ljust = helps.collect{ |x| x[0].size }.max + 3
         helps.collect!{ |x| x[0].to_s.ljust(ljust) + x[1].to_s }
         helps.join("\n")
       else
