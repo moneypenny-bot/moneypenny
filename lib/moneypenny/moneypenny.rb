@@ -18,21 +18,34 @@ module Moneypenny
       logger.debug "Said:  #{message}"
     end
 
+    def apologize
+      say "Sorry, I do not know how to respond to that."
+    end
+
+    def matching_message(message)
+      return unless message.match(/\A(mp|moneypenny)/i)
+      message.gsub( /\A(mp|moneypenny)(\,|)/i, '' ).strip
+    end
+
     def hear(message)
       logger.debug "Heard: #{message}"
-      if message.match(/\A(mp|moneypenny)/i)
-        message.gsub! /\A(mp|moneypenny)(\,|)/i, ''
-        message.strip!
+      if matched_message = matching_message(message)
         responded = false
-        Responders.constants.each do |responder|
-          response = eval("Responders::#{responder}").respond message
+        Responder.all.each do |responder|
+          response = responder.respond matched_message
           if response
             say response
             responded = true
           end
         end
         unless responded
-          say "Sorry, I do not know how to respond to that."
+          apologize
+        end
+      else
+        Listener.all.each do |listener|
+          if response = listener.respond( message )
+            say response
+          end
         end
       end
     end
