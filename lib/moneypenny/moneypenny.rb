@@ -1,7 +1,7 @@
 module Moneypenny
   class Moneypenny
     attr_accessor :connection, :logger
-    
+
     def initialize(connection, logger)
       @connection = connection
       @logger     = logger
@@ -9,7 +9,7 @@ module Moneypenny
         hear message
       end
     end
-    
+
     def say(message)
       @connection.say message
       logger.debug "Said:  #{message}"
@@ -26,7 +26,7 @@ module Moneypenny
           if response
             say response
             responded = true
-          end 
+          end
         end
         unless responded
           say "Sorry, I do not know how to respond to that."
