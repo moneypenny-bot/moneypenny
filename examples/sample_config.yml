@@ -1,0 +1,6 @@
+---
+:campfire:
+  :subdomain: subdomain
+  :room: campfireRoom
+  :api_token: SECRET_KEY
+
