@@ -4,23 +4,44 @@ require 'cgi'
 
 module Moneypenny
   class Define < Responder
-    def self.help
-      [ 'define space', 'returns Urban Dictionary definition for space' ]
-    end
-    
-    def self.respond(message)
-      if (query = message.match(/\Adefine\ (.+)\z/i))
-        url         = "http://www.urbandictionary.com/define.php?term=#{CGI::escape query[1]}"
-        doc         = Nokogiri::HTML open(url)
-        definitions = doc.css 'div.definition'
-        definition  = definitions[rand(definitions.size)].text rescue nil
-        if definition
-          "#{query[1]} is #{definition} (#{url})"
+    class << self
+      def help
+        [ 'define space', 'returns Urban Dictionary definition for space' ]
+      end
+      
+      def respond(message)
+        if (query = message.match(/\Adefine\ (.+)\z/i))
+          term        = query[1]
+          definitions = definitions_for_term term
+          if definitions.any?
+            definition, url = definitions.first
+            "#{term} is #{definition} (#{url})"
+          else
+            "I couldn't find the definition for #{term}."
+          end
         else
-          "I couldn't find the definition for #{query[1]}."
+          false
         end
-      else
-        false
+      end
+
+      def url_for_term(term)
+        "http://www.urbandictionary.com/define.php?term=#{CGI::escape term}"
+      end
+
+      def data_for_term(term)
+        open url_for_term(term)
+      end
+
+      def nokogiri_for_term(term)
+        Nokogiri::HTML data_for_term(term)
+      end
+
+      def definitions_for_term(term)
+        elements = nokogiri_for_term(term).css 'div.definition'
+        url      = url_for_term term
+        elements.collect do |element|
+          [ element.text, "#{url}&defid=#{element.parent['id'].split('_')[1]}" ]
+        end
       end
     end
   end
