@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
     "lib/moneypenny/responders/image.rb",
     "lib/moneypenny/responders/weather.rb",
     "lib/moneypenny/responders/wikipedia.rb",
+    "moneypenny.gemspec",
     "spec/moneypenny_spec.rb",
     "spec/spec_helper.rb"
   ]
