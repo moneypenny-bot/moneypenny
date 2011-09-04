@@ -6,7 +6,10 @@ it's very easy to add more responders.
 
 == Campfire Usage
 
-bundle exec bin/moneypenny SUBDOMAIN ROOM API_TOKEN
+bundle exec bin/moneypenny path/to/config.yml
+
+To see a sample config:
+bundle exec bin/moneypenny sample_config
 
 == Contributing to moneypenny
  
