@@ -11,3 +11,4 @@ logger       = Logger.new STDOUT
 logger.level = Logger::DEBUG
 moneypenny   = Moneypenny::Moneypenny.new connection, logger
 moneypenny.say 'Hello, Moneypenny here at your service.'
+moneypenny.listen!
