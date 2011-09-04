@@ -5,8 +5,7 @@ module Moneypenny
     def initialize(connection, logger)
       @connection = connection
       @logger     = logger
-      connection.say 'Hello, Moneypenny here at your service.'
-      connection.listen do |message|
+      @connection.listen do |message|
         hear message
       end
     end

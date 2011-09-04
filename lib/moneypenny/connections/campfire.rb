@@ -14,6 +14,7 @@ module Moneypenny
           campfire = Tinder::Campfire.new @subdomain, :token => @api_token
           @id      = campfire.me['id']
           @room    = campfire.find_room_by_name @room_name
+          raise 'Unknown Room' unless @room
         end
         @room
       end
