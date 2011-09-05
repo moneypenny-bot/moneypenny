@@ -4,6 +4,7 @@ dir = File.dirname(__FILE__)
 $LOAD_PATH.unshift dir unless $LOAD_PATH.include?(dir)
 
 require 'moneypenny/moneypenny'
+require 'moneypenny/null_logger'
 require 'moneypenny/plugin'
 require 'moneypenny/plugin_manager'
 require 'moneypenny/responder'

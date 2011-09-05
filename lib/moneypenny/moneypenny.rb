@@ -15,11 +15,21 @@ module Moneypenny
     end
 
     def connection
-      @connection ||= Connections::Campfire.new(
-        @config[:campfire][:subdomain],
-        @config[:campfire][:room],
-        @config[:campfire][:api_token]
-      )
+      return @connection if defined?(@connection)
+      if @config[:connection] == 'echo'
+        # hack fabulous
+        # disable logging to STDOUT echobot, using STDOUT fucks with the listener
+        if @logger.instance_variable_get("@logdev").dev == STDOUT
+          @logger = NullLogger.new
+        end
+        @connection = Connections::Echo.new
+      else
+        @connection = Connections::Campfire.new(
+          @config[:campfire][:subdomain],
+          @config[:campfire][:room],
+          @config[:campfire][:api_token]
+        )
+      end
     end
 
     def listen!

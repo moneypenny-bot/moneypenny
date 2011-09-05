@@ -26,6 +26,7 @@ module Moneypenny
       when /load all plugins/
         @responders.load_all! &&
         @listeners.load_all!
+          "Loaded all plugins"
       else
         false
       end

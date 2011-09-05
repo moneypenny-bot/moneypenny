@@ -7,12 +7,13 @@ subdomain = ARGV[0]
 room      = ARGV[1]
 api_token = ARGV[2]
 
+input = ARGV.shift
 case
-when ARGV[0] == 'sample_config'
+when input == 'sample_config'
   puts File.read( File.dirname(__FILE__) + "/../examples/sample_config.yml" )
   exit
-when ARGV[0] && File.exists?( ARGV[0] )
-  config = YAML::load_file( ARGV[0] )
+when input && File.exists?( input )
+  config = YAML::load_file( input )
 else
   puts "./moneypenny (path_to_config_file|sample_config)"
   exit
