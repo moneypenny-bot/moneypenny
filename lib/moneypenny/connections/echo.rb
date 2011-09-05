@@ -2,11 +2,15 @@ module Moneypenny
   module Connections
     class Echo
       def say(message)
-        @listener.call message
+        puts 'Echobot: ' + message
       end
 
-      def listen(&block)
-        @listener = block
+      def listen
+        loop do
+          message = gets
+          next if message =~ /^Echobot: /
+          yield message.to_s
+        end
       end
     end
   end

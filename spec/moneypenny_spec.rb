@@ -18,29 +18,27 @@ describe "Moneypenny" do
 
   describe "hear" do
     it "ignores messages that don't start with moneypenny or mp" do
-      Moneypenny::Responder.expects(:all).never
-      Moneypenny::Listener.stubs(:all).returns([])
+      @bot.responders = mock('responders').expects(:loaded_plugins).never
       @connection.expects(:say).never
       @bot.hear('foo')
     end
 
     it "passes all messages to listeners" do
-      Moneypenny::Listener.expects(:all).returns([])
+      @bot.listeners.expects(:loaded_plugins).returns([])
       @bot.hear('foo')
     end
 
     it "calls responders on all messages that match the bot's name" do
       message = mock('message')
-      @bot.stubs(:matching_message).with(message).returns(true)
-      Moneypenny::Responder.expects(:all).returns([])
+      @bot.stubs(:matching_message).with(message).returns('true')
+      @bot.responders.expects(:loaded_plugins).returns([])
       @bot.stubs(:apologize)
       @bot.hear( message )
     end
 
     it "appologizes if the message matches but no responders respond to it" do
       message = mock('message')
-      @bot.stubs(:matching_message).with(message).returns(true)
-      Moneypenny::Responder.stubs(:all).returns([])
+      @bot.stubs(:matching_message).with(message).returns('true')
       @bot.expects(:apologize)
       @bot.hear( message )
     end
@@ -48,7 +46,7 @@ describe "Moneypenny" do
     it 'says any message returned by a listener' do
       @bot.stubs(:matching_message).returns(false)
       listener = mock('listener', :respond => 'msg')
-      Moneypenny::Listener.expects(:all).returns( [listener] )
+      @bot.listeners.expects(:loaded_plugins).returns( [listener] )
       @bot.expects(:say).with('msg')
       @bot.hear('foo')
     end
@@ -56,10 +54,11 @@ describe "Moneypenny" do
     it 'says any message returned by a responder' do
       @bot.stubs(:matching_message).returns('matching message')
       responder = mock('responder', :respond => 'msg')
-      Moneypenny::Responder.stubs(:all).returns( [responder] )
-      Moneypenny::Listener.stubs(:all).returns( [] )
+      @bot.responders.stubs(:loaded_plugins).returns( [responder] )
+      @bot.listeners.stubs(:loaded_plugins).returns( [] )
       @bot.expects(:say).with('msg')
       @bot.hear('foo')
     end
   end
+
 end
