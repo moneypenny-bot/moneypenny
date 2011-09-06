@@ -2,28 +2,28 @@ require 'tinder'
 
 module Moneypenny
   module Connections
-    class Campfire
-      def initialize(subdomain, room_name, api_token)
-        @subdomain = subdomain
-        @room_name = room_name
-        @api_token = api_token
+    class Campfire < Connection
+      def default_config
+        { 'subdomain' => nil,
+          'room_name' => nil,
+          'api_token' => nil }
       end
-
+  
       def room
         unless @room
-          campfire = Tinder::Campfire.new @subdomain, :token => @api_token
+          campfire = Tinder::Campfire.new config['subdomain'], :token => config['api_token']
           @id      = campfire.me['id']
-          @room    = campfire.find_room_by_name @room_name
+          @room    = campfire.find_room_by_name config['room_name']
           raise 'Unknown Room' unless @room
         end
         @room
       end
-
+  
       def reconnect
         @room = nil
         room
       end
-
+  
       def say(message)
         if message.include?("\n")
           room.paste message
@@ -31,7 +31,7 @@ module Moneypenny
           room.speak message
         end
       end
-
+  
       def listen(&block)
         begin
           room.listen do |message|
