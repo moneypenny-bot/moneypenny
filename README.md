@@ -1,21 +1,28 @@
-= Moneypenny
-
+Moneypenny
+==========
 Moneypenny is a simple chat bot.  Moneypenny works with Campfire but could be 
 made to work with other chat rooms easily.  See lib/moneypenny/responders,
 it's very easy to add more responders.
 
-== Demo
+Current Build
+-------------
+![Current Build](https://secure.travis-ci.org/moneypenny-bot/moneypenny.png?branch=master)
 
+https://secure.travis-ci.org/moneypenny-bot/moneypenny
+
+Demo
+----
 Visit https://moneypenny-bot.campfirenow.com/b8f74 to see Moneypenny in action.
 
-== Campfire Usage
-
+Campfire Usage
+--------------
 bundle exec bin/moneypenny path/to/config.yml
 
 To see a sample config:
 bundle exec bin/moneypenny sample_config
 
-== Contributing to moneypenny
+Contributing to Moneypenny
+--------------------------
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
@@ -25,8 +32,8 @@ bundle exec bin/moneypenny sample_config
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
-== Copyright
-
-Copyright (c) 2011 John Wulff. See LICENSE.txt for
+Copyright
+---------
+Copyright © 2011 John Wulff. See LICENSE.txt for
 further details.
 
