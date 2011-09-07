@@ -1,7 +1,5 @@
-require 'moneypenny/plugin'
-
 module Moneypenny
-  class Responder < Plugin
+  class Responder
     @registered_responders = []
 
     def self.inherited(subclass)
@@ -11,6 +9,5 @@ module Moneypenny
     def self.all
       @registered_responders
     end
-
   end
 end

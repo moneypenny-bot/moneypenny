@@ -1,5 +1,5 @@
 module Moneypenny
-  class Listener < Plugin
+  class Listener
     @registered_listeners = []
 
     def self.inherited(subclass)
