@@ -16,15 +16,21 @@ describe Moneypenny::Plugins::Responders::Image do
   end
 
   describe 'respond' do
+    bad_search_term = ".................."
+    good_search_term = "cat"
+
     context 'given a message that it understands' do 
       it "should respond to 'image me'" do 
-        @image.respond('image me cat').should match /^https?:\/\/\w/i
+        @image.respond('image me #{good_search_term}').should match /^https?:\/\/\w/i
       end
       it "should respond to 'find a something image'" do
-        @image.respond('find a cat image').should match /^https?:\/\/\w/i
+        @image.respond('find a #{good_search_term} image').should match /^https?:\/\/\w/i
       end
-      it "should pass back the error message for a failed search" do
-        @image.respond("image me ..................").should match /I was unable to find/
+      it "should pass back the default error message for a failed search" do
+        @image.respond("image me #{bad_search_term}").should match /I was unable to find/
+      end
+      it "should pass back a custom error message for a failed search" do
+        @image.respond("find a #{bad_search_term} photo").should match Regexp.new("a[^n].*#{bad_search_term}.*photo")
       end
     end
 
@@ -35,12 +41,5 @@ describe Moneypenny::Plugins::Responders::Image do
       end
     end
 
-    context 'given you attempt to call a private class method' do
-      it 'should throw a no method error exception' do
-        lambda { 
-          @image.image_search_url 'foo'
-        }.should raise_error NoMethodError
-      end
-    end
   end
 end
