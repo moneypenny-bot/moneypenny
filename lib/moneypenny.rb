@@ -4,21 +4,26 @@ dir = File.dirname(__FILE__)
 $LOAD_PATH.unshift dir unless $LOAD_PATH.include?(dir)
 
 require 'moneypenny/moneypenny'
-require 'moneypenny/null_logger'
-require 'moneypenny/plugin'
-require 'moneypenny/plugin_manager'
-require 'moneypenny/responder'
-require 'moneypenny/listener'
+
+require 'moneypenny/mixins/has_config'
+
+require 'moneypenny/connection'
 require 'moneypenny/connections/campfire'
 require 'moneypenny/connections/echo'
 
+require 'moneypenny/plugin'
+require 'moneypenny/plugins/listener'
+require 'moneypenny/plugins/responder'
+
 #responders
-require 'moneypenny/responders/weather'
-require 'moneypenny/responders/wikipedia'
-require 'moneypenny/responders/image'
-require 'moneypenny/responders/help'
-require 'moneypenny/responders/define'
-require 'moneypenny/responders/version'
+require 'moneypenny/plugins/responders/weather'
+require 'moneypenny/plugins/responders/wikipedia'
+require 'moneypenny/plugins/responders/image'
+require 'moneypenny/plugins/responders/help'
+require 'moneypenny/plugins/responders/define'
+require 'moneypenny/plugins/responders/version'
 
 #listeners
-require 'moneypenny/listeners/thats_what_she_said'
+require 'moneypenny/plugins/listeners/thats_what_she_said'
+
+require 'moneypenny/default_config'
