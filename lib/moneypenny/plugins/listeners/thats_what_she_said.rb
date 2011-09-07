@@ -4,13 +4,13 @@ module Moneypenny
   module Plugins
     module Listeners
       class ThatsWhatSheSaid < Listener
+        def self.default_config
+          { 'threshold' => 5.0 }
+        end
+
         def initialize(moneypenny)
           super
           TWSS.threshold = config['threshold']
-        end
-      
-        def default_config
-          { 'threshold' => 5.0 }
         end
         
         def respond(message)

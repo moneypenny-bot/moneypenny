@@ -3,7 +3,7 @@ require 'tinder'
 module Moneypenny
   module Connections
     class Campfire < Connection
-      def default_config
+      def self.default_config
         { 'subdomain' => nil,
           'room_name' => nil,
           'api_token' => nil }

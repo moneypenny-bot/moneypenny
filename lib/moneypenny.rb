@@ -25,3 +25,5 @@ require 'moneypenny/plugins/responders/version'
 
 #listeners
 require 'moneypenny/plugins/listeners/thats_what_she_said'
+
+require 'moneypenny/default_config'

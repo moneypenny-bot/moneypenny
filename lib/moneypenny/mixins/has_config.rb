@@ -1,7 +1,13 @@
 module Moneypenny
   module HasConfig
-    def default_config
-      {}
+    def self.included(base)
+      base.extend ClassMethods
+    end
+
+    module ClassMethods
+      def self.default_config
+        {}
+      end
     end
 
     def config
@@ -10,7 +16,7 @@ module Moneypenny
         config_subset[x] ||= {}
         config_subset = config_subset[x]
       end
-      default_config.merge config_subset
+      self.class.default_config.merge config_subset
     end
   end
 end
