@@ -3,19 +3,21 @@ module Moneypenny
   VERSION = (git_sha = `cd #{ROOT_PATH} && git rev-parse HEAD`.strip) == '' ? "v#{File.read(File.join(ROOT_PATH, 'VERSION')).strip}" : git_sha
 
   class Moneypenny
-    attr_accessor :logger
+    attr_accessor :config, :logger, :listeners, :responders
 
     def initialize(config, logger)
-      @config     = config
-      @logger     = logger
+      @config = config
+      @logger = logger
+      @responders = Plugins::Responders::Responder.all.collect do |responder_class|
+        responder_class.new self
+      end
+      @listeners = Plugins::Listeners::Listener.all.collect do |listeners_class|
+        listeners_class.new self
+      end
     end
 
     def connection
-      @connection ||= Connections::Campfire.new(
-        @config[:campfire][:subdomain],
-        @config[:campfire][:room],
-        @config[:campfire][:api_token]
-      )
+      @connection ||= Connections::Campfire.new self
     end
 
     def listen!
@@ -42,7 +44,7 @@ module Moneypenny
       logger.debug "Heard: #{message}"
       if matched_message = matching_message(message)
         responded = false
-        Responder.all.each do |responder|
+        responders.each do |responder|
           response = responder.respond matched_message
           if response
             say response
@@ -53,7 +55,7 @@ module Moneypenny
           apologize
         end
       else
-        Listener.all.each do |listener|
+        listeners.each do |listener|
           if response = listener.respond( message )
             say response
           end

@@ -9,7 +9,7 @@ api_token = ARGV[2]
 
 case
 when ARGV[0] == 'sample_config'
-  puts File.read( File.dirname(__FILE__) + "/../examples/sample_config.yml" )
+  puts Moneypenny::DefaultConfig.to_yaml
   exit
 when ARGV[0] && File.exists?( ARGV[0] )
   config = YAML::load_file( ARGV[0] )
