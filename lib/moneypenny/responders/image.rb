@@ -18,7 +18,7 @@ module Moneypenny
       when /^image me (.*)$/i
         image_response $1
       when /^find\ (a|an)\ (.+)\ (image|picture|photo)$/i
-        image_response $2, "I couldn't find #{$1} #{$2} #{3}."
+        image_response $2, "I couldn't find #{$1} #{$2} #{$3}."
       else
         false
       end
