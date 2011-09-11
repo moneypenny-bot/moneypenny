@@ -1,6 +1,3 @@
-require 'json'
-require 'open-uri'
-require 'cgi'
 require 'octopi'
 
 module Moneypenny
