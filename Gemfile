@@ -4,6 +4,7 @@ gem 'tinder'
 gem 'nokogiri'
 gem 'json'
 gem 'twss'
+gem 'octopi'
 
 group :development do
   gem 'jeweler'
