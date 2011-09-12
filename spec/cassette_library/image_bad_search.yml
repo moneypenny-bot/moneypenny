@@ -1,0 +1,36 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://ajax.googleapis.com:443/ajax/services/search/images?q=..................&rsz=8&safe=on&v=1.0
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-content-type-options: 
+      - nosniff
+      x-frame-options: 
+      - SAMEORIGIN
+      expires: 
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      x-embedded-status: 
+      - "200"
+      content-type: 
+      - text/javascript; charset=utf-8
+      server: 
+      - GSE
+      date: 
+      - Mon, 12 Sep 2011 01:30:11 GMT
+      x-xss-protection: 
+      - 1; mode=block
+      cache-control: 
+      - no-cache, no-store, max-age=0, must-revalidate
+      pragma: 
+      - no-cache
+      transfer-encoding: 
+      - chunked
+    body: "{\"responseData\": {\"results\":[],\"cursor\":{\"moreResultsUrl\":\"http://www.google.com/images?oe\\u003dutf8\\u0026ie\\u003dutf8\\u0026source\\u003duds\\u0026start\\u003d0\\u0026safe\\u003dactive\\u0026hl\\u003den\\u0026q\\u003d..................\"}}, \"responseDetails\": null, \"responseStatus\": 200}"
+    http_version: "1.1"
