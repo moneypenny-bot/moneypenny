@@ -21,16 +21,27 @@ describe Moneypenny::Plugins::Responders::Image do
 
     context 'given a message that it understands' do 
       it "should respond to 'image me'" do 
-        @image.respond('image me #{good_search_term}').should match /^https?:\/\/\w/i
+        VCR.use_cassette('image_good_search') do
+          @image.respond('image me #{good_search_term}').should match /^https?:\/\/\w/i
+        end
       end
+
       it "should respond to 'find a something image'" do
-        @image.respond('find a #{good_search_term} image').should match /^https?:\/\/\w/i
+        VCR.use_cassette('image_good_search') do
+          @image.respond('find a #{good_search_term} image').should match /^https?:\/\/\w/i
+        end
       end
+
       it "should pass back the default error message for a failed search" do
-        @image.respond("image me #{bad_search_term}").should match /I was unable to find/
+        VCR.use_cassette('image_bad_search') do
+          @image.respond("image me #{bad_search_term}").should match /I was unable to find/
+        end
       end
+
       it "should pass back a custom error message for a failed search" do
-        @image.respond("find a #{bad_search_term} photo").should match Regexp.new("a[^n].*#{bad_search_term}.*photo")
+        VCR.use_cassette('image_bad_search') do
+          @image.respond("find a #{bad_search_term} photo").should match Regexp.new("a[^n].*#{bad_search_term}.*photo")
+        end
       end
     end
 

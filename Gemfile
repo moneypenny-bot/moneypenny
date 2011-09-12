@@ -10,4 +10,6 @@ group :development do
   gem 'rspec'
   gem 'mocha'
   gem 'rcov'
+  gem 'vcr'
+  gem 'webmock'
 end
