@@ -16,11 +16,11 @@ module Moneypenny
 
         def respond(message)
           case message
-          when /^show me ([\w\-\._]+)\/([\w\-\._]+) issues$/i #assigned to name
-            repo_user = $1
-            repo_name = $2
-            issue_response repo_user, repo_name
-          when /^show me issues$/i
+          when /^show (me )?([\w\-\._]+)\/([\w\-\._]+) issues$/i #assigned to name
+            user      = $2
+            repo_name = $3
+            issue_response user, repo_name
+          when /^show (me )?issues$/i
             issue_response
           else
             false
@@ -28,18 +28,14 @@ module Moneypenny
         end
 
         private
-          def repository(repo_user, repo_name)
-            # @cache ||= Hash.new({})
-            # cached_repo = @cache.fetch(repo_user) do |key|
-            #   {key => Octopi::Repository.find(:name => repo_name, :user => repo_user)}
-            # end
-            # @cache
-            Octopi::Repository.find(:name => repo_name, :user => repo_user)
+          def repository(user, repo_name)
+            @repo_cache ||= Hash.new({})
+            @repo_cache[user][repo_name] ||= Octopi::Repository.find(:name => repo_name, :user => user)
           end
 
-          def issue_response(repo_user = config['user'], repo_name = config['repo'])
-            issues = repository(repo_user, repo_name).issues.map do |i|
-              issue_url = "https://github.com/#{repo_user}/#{repo_name}/issues/#{i.number}"
+          def issue_response(user = config['user'], repo_name = config['repo'])
+            issues = repository(user, repo_name).issues.map do |i|
+              issue_url = "https://github.com/#{user}/#{repo_name}/issues/#{i.number}"
               " * ##{i.number}: #{i.title} - #{issue_url}"
             end.join("\n")
           rescue NoMethodError
