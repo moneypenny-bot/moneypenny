@@ -1,5 +1,3 @@
-require File.expand_path( File.join(File.dirname(__FILE__), '..',  'spec_helper') )
-
 describe Moneypenny::Plugins::Responders::Define do
   before :each do
     @define = Moneypenny::Plugins::Responders::Define.new stub('moneypenny')
