@@ -1,0 +1,39 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://github.com:443/api/v2/yaml/repos/show/brentvatne/this-repo-does-not-exist?
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 404
+      message: Not Found
+    headers: 
+      x-frame-options: 
+      - deny
+      x-ratelimit-limit: 
+      - "60"
+      connection: 
+      - keep-alive
+      content-type: 
+      - application/x-yaml; charset=utf-8
+      server: 
+      - nginx/1.0.4
+      date: 
+      - Sat, 17 Sep 2011 23:15:19 GMT
+      x-runtime: 
+      - 8ms
+      x-ratelimit-remaining: 
+      - "59"
+      content-length: 
+      - "69"
+      cache-control: 
+      - no-cache
+      status: 
+      - 404 Not Found
+    body: |
+      --- 
+      error: brentvatne/this-repo-does-not-exist Repository not found
+
+    http_version: "1.1"

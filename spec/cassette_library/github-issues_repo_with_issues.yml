@@ -1,0 +1,219 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://github.com:443/api/v2/yaml/repos/show/brentvatne/always-has-issues?
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-frame-options: 
+      - deny
+      etag: 
+      - "\"707fc53febfd85a0ea9b315babeb30c1\""
+      x-ratelimit-limit: 
+      - "60"
+      connection: 
+      - keep-alive
+      content-type: 
+      - application/x-yaml; charset=utf-8
+      server: 
+      - nginx/1.0.4
+      date: 
+      - Sat, 17 Sep 2011 23:11:12 GMT
+      x-runtime: 
+      - 20ms
+      x-ratelimit-remaining: 
+      - "55"
+      content-length: 
+      - "349"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - 200 OK
+    body: |
+      --- 
+      repository: 
+        :has_downloads: true
+        :watchers: 1
+        :homepage: ""
+        :has_wiki: true
+        :forks: 1
+        :fork: false
+        :open_issues: 1
+        :size: 0
+        :private: false
+        :has_issues: true
+        :name: always-has-issues
+        :owner: brentvatne
+        :description: ""
+        :created_at: 2011-09-17 15:20:21 -07:00
+        :url: https://github.com/brentvatne/always-has-issues
+
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://github.com:443/api/v2/yaml/user/show/brentvatne?
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-frame-options: 
+      - deny
+      etag: 
+      - "\"236bd572ee466629700ca511a30f056e\""
+      x-ratelimit-limit: 
+      - "60"
+      connection: 
+      - keep-alive
+      content-type: 
+      - application/x-yaml; charset=utf-8
+      server: 
+      - nginx/1.0.4
+      date: 
+      - Sat, 17 Sep 2011 23:11:12 GMT
+      x-runtime: 
+      - 23ms
+      x-ratelimit-remaining: 
+      - "54"
+      content-length: 
+      - "327"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - 200 OK
+    body: |
+      --- 
+      user: 
+        gravatar_id: 579a528974090c0172cf8cecab01ea26
+        company: 
+        name: Brent
+        created_at: 2009-05-31 15:55:13 -07:00
+        location: 
+        public_repo_count: 9
+        public_gist_count: 5
+        blog: 
+        following_count: 2
+        id: 90494
+        type: User
+        permission: 
+        followers_count: 1
+        login: brentvatne
+        email: brentvatne@gmail.com
+
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://github.com:443/api/v2/yaml/issues/list/brentvatne/always-has-issues/open?
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-frame-options: 
+      - deny
+      etag: 
+      - "\"6bd57cd9276a4404385ed92b20e0eae8\""
+      x-ratelimit-limit: 
+      - "60"
+      connection: 
+      - keep-alive
+      content-type: 
+      - application/x-yaml; charset=utf-8
+      server: 
+      - nginx/1.0.4
+      date: 
+      - Sat, 17 Sep 2011 23:11:13 GMT
+      x-runtime: 
+      - 17ms
+      x-ratelimit-remaining: 
+      - "53"
+      content-length: 
+      - "363"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - 200 OK
+    body: |
+      --- 
+      issues: 
+      - gravatar_id: 579a528974090c0172cf8cecab01ea26
+        position: 1.0
+        number: 1
+        votes: 0
+        created_at: 2011-09-17 15:20:48 -07:00
+        comments: 0
+        body: issue body text
+        title: issue title text
+        updated_at: 2011-09-17 15:20:48 -07:00
+        html_url: https://github.com/brentvatne/always-has-issues/issues/1
+        user: brentvatne
+        labels: []
+      
+        state: open
+
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://github.com:443/api/v2/yaml/issues/list/brentvatne/always-has-issues/open?
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-frame-options: 
+      - deny
+      etag: 
+      - "\"6bd57cd9276a4404385ed92b20e0eae8\""
+      x-ratelimit-limit: 
+      - "60"
+      connection: 
+      - keep-alive
+      content-type: 
+      - application/x-yaml; charset=utf-8
+      server: 
+      - nginx/1.0.4
+      date: 
+      - Sat, 17 Sep 2011 23:11:14 GMT
+      x-runtime: 
+      - 21ms
+      x-ratelimit-remaining: 
+      - "52"
+      content-length: 
+      - "363"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - 200 OK
+    body: |
+      --- 
+      issues: 
+      - gravatar_id: 579a528974090c0172cf8cecab01ea26
+        position: 1.0
+        number: 1
+        votes: 0
+        created_at: 2011-09-17 15:20:48 -07:00
+        comments: 0
+        body: issue body text
+        title: issue title text
+        updated_at: 2011-09-17 15:20:48 -07:00
+        html_url: https://github.com/brentvatne/always-has-issues/issues/1
+        user: brentvatne
+        labels: []
+      
+        state: open
+
+    http_version: "1.1"

@@ -12,7 +12,7 @@ require 'moneypenny/null_logger'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
-  config.mock_framework = :mocha
+  # config.mock_framework = :mocha
 end
 
 VCR.config do |config|

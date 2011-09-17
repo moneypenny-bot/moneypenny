@@ -10,6 +10,7 @@ module Moneypenny
             'version' => '0.1' }
         end
 
+
         def help
           [ 'show me moneypenny-bot/moneypenny issues', 'returns a list of public issues for the specified repository' ]
         end
@@ -17,9 +18,9 @@ module Moneypenny
         def respond(message)
           case message
           when /^show (me )?([\w\-\._]+)\/([\w\-\._]+) issues$/i #assigned to name
-            user      = $2
-            repo_name = $3
-            issue_response user, repo_name
+            user = $2
+            repo = $3
+            issue_response user, repo
           when /^show (me )?issues$/i
             issue_response
           else
@@ -28,18 +29,24 @@ module Moneypenny
         end
 
         private
-          def repository(user, repo_name)
+          def repository(user, repo)
             @repo_cache ||= Hash.new({})
-            @repo_cache[user][repo_name] ||= Octopi::Repository.find(:name => repo_name, :user => user)
+            @repo_cache[user][repo] ||= Octopi::Repository.find(:name => repo, :user => user)
           end
 
-          def issue_response(user = config['user'], repo_name = config['repo'])
-            issues = repository(user, repo_name).issues.map do |i|
-              issue_url = "https://github.com/#{user}/#{repo_name}/issues/#{i.number}"
+          def issue_response(user = config['user'], repo = config['repo'])
+            repo_path = "#{user}/#{repo}"
+            issues = repository(user, repo).issues.map do |i|
+              issue_url = "https://github.com/#{repo_path}/issues/#{i.number}"
               " * ##{i.number}: #{i.title} - #{issue_url}"
-            end.join("\n")
-          rescue NoMethodError
-            return "I was unable to find any issues, sir!"
+            end
+            issues = "#{issues.length} issue#{"s" if issues.length > 1} found, sir:\n" + issues.join("\n")
+          rescue Octopi::NotFound
+            return "Sir, #{repo_path} does not exist or is private."
+          rescue NoMethodError => e
+            # this is an unfortunate quirk of the API: a repo without issues
+            # causes Octopi to raise a NoMethodError
+            return "I was unable to find any issues in #{repo_path}, sir!"
           end
       end
     end

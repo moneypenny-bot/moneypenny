@@ -35,6 +35,7 @@ Gem::Specification.new do |s|
     "lib/moneypenny/null_logger.rb",
     "lib/moneypenny/responders/help.rb",
     "lib/moneypenny/responders/image.rb",
+    "lib/moneypenny/responders/issues.rb",
     "lib/moneypenny/responders/weather.rb",
     "lib/moneypenny/responders/wikipedia.rb",
     "moneypenny.gemspec",
