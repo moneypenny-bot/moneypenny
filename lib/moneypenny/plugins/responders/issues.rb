@@ -29,24 +29,29 @@ module Moneypenny
         end
 
         private
-          def repository(user, repo)
+          def issue_url(user, repo, issue_number)
+            "https://github.com/#{user}/#{repo}/issues/#{issue_number}"
+          end
+          def get_remote_repository(user, repo)
             @repo_cache ||= Hash.new({})
             @repo_cache[user][repo] ||= Octopi::Repository.find(:name => repo, :user => user)
           end
 
           def issue_response(user = config['user'], repo = config['repo'])
+            repository = get_remote_repository(user, repo)
             repo_path = "#{user}/#{repo}"
-            issues = repository(user, repo).issues.map do |i|
-              issue_url = "https://github.com/#{repo_path}/issues/#{i.number}"
-              " * ##{i.number}: #{i.title} - #{issue_url}"
+            return "I was unable to find any issues in #{repo_path}, sir!" if repository.open_issues < 1
+
+            #todo: if open issues greater than X, only show first X
+            #-- it seems to crash on large numbers
+            
+            issues = repository.issues.map do |issue|
+              " * ##{issue.number}: #{issue.title} - #{issue_url(user, repo, issue.number)}"
             end
-            issues = "#{issues.length} issue#{"s" if issues.length > 1} found, sir:\n" + issues.join("\n")
+            return "#{issues.length} issue#{"s" if issues.length > 1} found, sir:\n" + issues.join("\n")
+
           rescue Octopi::NotFound
             return "Sir, #{repo_path} does not exist or is private."
-          rescue NoMethodError => e
-            # this is an unfortunate quirk of the API: a repo without issues
-            # causes Octopi to raise a NoMethodError
-            return "I was unable to find any issues in #{repo_path}, sir!"
           end
       end
     end
