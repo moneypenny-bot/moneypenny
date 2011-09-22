@@ -10,10 +10,6 @@ Current Build
 
 https://secure.travis-ci.org/moneypenny-bot/moneypenny
 
-Demo
-----
-Visit https://moneypenny-bot.campfirenow.com/b8f74 to see Moneypenny in action.
-
 Campfire Usage
 --------------
 bundle exec bin/moneypenny path/to/config.yml
