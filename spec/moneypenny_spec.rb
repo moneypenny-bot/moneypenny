@@ -62,4 +62,21 @@ describe "Moneypenny" do
       @bot.hear('foo')
     end
   end
+
+  describe 'matching_message' do
+    it "returns nil if the message doesn't match the bot name" do
+      @bot.matching_message("foo").should == nil
+    end
+
+    it "returns nil even if the message is nil" do
+      @bot.matching_message(nil).should == nil
+    end
+
+    it "returns the message, with the bot named stripped from the string" do
+      @bot.matching_message("mp, foo").should == 'foo'
+      @bot.matching_message("moneypenny, foo").should == 'foo'
+      @bot.matching_message("moneypenny").should == ''
+      @bot.matching_message("moneypenny moneypenny").should == 'moneypenny'
+    end
+  end
 end

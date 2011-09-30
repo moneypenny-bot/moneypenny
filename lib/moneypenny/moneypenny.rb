@@ -36,8 +36,8 @@ module Moneypenny
     end
 
     def matching_message(message)
-      return unless message.match(/\A(mp|moneypenny)/i)
-      message.gsub( /\A(mp|moneypenny)(\,|)/i, '' ).strip
+      return unless message && message.match(/\A(mp|moneypenny)/i)
+      message.gsub( /\A(mp|moneypenny)\,?\s*/i, '' ).strip
     end
 
     def hear(message)
