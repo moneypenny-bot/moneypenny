@@ -1,5 +1,3 @@
-require File.expand_path( File.join(File.dirname(__FILE__), '..',  'spec_helper') )
-
 describe Moneypenny::Plugins::Listeners::ThatsWhatSheSaid do
   before :each do
     moneypenny = stub 'moneypenny'

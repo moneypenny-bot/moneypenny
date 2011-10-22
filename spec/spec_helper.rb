@@ -11,11 +11,15 @@ require 'moneypenny/null_logger'
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
-VCR.config do |c|
-  c.cassette_library_dir     = 'spec/cassette_library'
-  c.stub_with                :webmock
+RSpec.configure do |config|
+  # config.mock_framework = :mocha
 end
 
-RSpec.configure do |config|
-  config.mock_framework = :mocha
+VCR.config do |config|
+  config.cassette_library_dir     = 'spec/cassette_library'
+  config.stub_with                :webmock
+end
+
+def new_moneypenny_instance
+  Moneypenny::Moneypenny.new({}, nil)
 end
