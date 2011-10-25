@@ -25,11 +25,7 @@ module Moneypenny
       end
   
       def say(message)
-        if message.include?("\n")
-          room.paste message
-        else
-          room.speak message
-        end
+        room.speak message
       end
   
       def listen(&block)
