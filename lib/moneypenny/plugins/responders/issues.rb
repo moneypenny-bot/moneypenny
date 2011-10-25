@@ -56,7 +56,7 @@ module Moneypenny
         def issue_response( user, repo )
           repository = get_remote_repository(user, repo)
           repo_path = "#{user}/#{repo}"
-          return "I was unable to find any issues in #{repo_path}, sir!" if repository.open_issues < 1
+          return "I was unable to find any issues in #{repo_path}!" if repository.open_issues < 1
 
           #todo: if open issues greater than X, only show first X
           #-- it seems to crash on large numbers
@@ -64,7 +64,7 @@ module Moneypenny
           issues = repository.issues.map do |issue|
             " * ##{issue.number}: #{issue.title} - #{issue_url(user, repo, issue.number)}"
           end
-          return "#{issues.length} issue#{"s" if issues.length > 1} found, sir:\n" + issues.join("\n")
+          return "#{issues.length} issue#{"s" if issues.length > 1} found:\n" + issues.join("\n")
 
         rescue NotFound
           return "#{repo_path} does not exist."
