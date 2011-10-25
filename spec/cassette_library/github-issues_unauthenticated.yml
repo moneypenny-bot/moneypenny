@@ -1,0 +1,39 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://github.com:443/api/v2/yaml/repos/show/unauthenticated/unauthenticated?
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 401
+      message: Unauthorized
+    headers: 
+      x-frame-options: 
+      - deny
+      x-ratelimit-limit: 
+      - "60"
+      connection: 
+      - keep-alive
+      content-type: 
+      - application/x-yaml; charset=utf-8
+      server: 
+      - nginx/1.0.4
+      date: 
+      - Tue, 25 Oct 2011 07:16:47 GMT
+      x-runtime: 
+      - 9ms
+      x-ratelimit-remaining: 
+      - "59"
+      content-length: 
+      - "27"
+      cache-control: 
+      - no-cache
+      status: 
+      - 401 Unauthorized
+    body: |
+      --- 
+      error: not authorized
+
+    http_version: "1.1"

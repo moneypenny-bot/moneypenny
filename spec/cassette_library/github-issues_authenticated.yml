@@ -1,0 +1,238 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://github.com:443/api/v2/yaml/user/show/bar?
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-frame-options: 
+      - deny
+      etag: 
+      - "\"caef7e67d22703e6dcffc8bd69ab3e42\""
+      x-ratelimit-limit: 
+      - "60"
+      connection: 
+      - keep-alive
+      content-type: 
+      - application/x-yaml; charset=utf-8
+      server: 
+      - nginx/1.0.4
+      date: 
+      - Tue, 25 Oct 2011 07:49:37 GMT
+      x-runtime: 
+      - 14ms
+      x-ratelimit-remaining: 
+      - "59"
+      content-length: 
+      - "335"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - 200 OK
+    body: |
+      --- 
+      user: 
+        name: joe smith
+        created_at: 2008-03-09 13:59:13 -07:00
+        location: 
+        public_repo_count: 8
+        public_gist_count: 3
+        blog: ""
+        following_count: 5
+        id: 2649
+        type: User
+        permission: 
+        followers_count: 4
+        login: bar
+        email: ""
+
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://github.com:443/api/v2/yaml/repos/show/authenticated/authenticated?login=bar&token=TOKEN_STUB
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-frame-options: 
+      - deny
+      etag: 
+      - "\"05686ca267708fcb3a3817179c8a71fe\""
+      x-ratelimit-limit: 
+      - "60"
+      connection: 
+      - keep-alive
+      content-type: 
+      - application/x-yaml; charset=utf-8
+      server: 
+      - nginx/1.0.4
+      date: 
+      - Tue, 25 Oct 2011 07:49:38 GMT
+      x-runtime: 
+      - 27ms
+      x-ratelimit-remaining: 
+      - "59"
+      content-length: 
+      - "458"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - 200 OK
+    body: |
+      --- 
+      repository: 
+        :homepage: http://www.example.com
+        :forks: 1
+        :has_issues: true
+        :language: Ruby
+        :has_downloads: false
+        :url: https://github.com/authenticated/authenticated
+        :fork: false
+        :watchers: 4
+        :size: 4604
+        :private: true
+        :has_wiki: true
+        :name: authenticated
+        :description: The Fake Application
+        :owner: bar
+        :pushed_at: 2011-10-24 18:10:56 -07:00
+        :organization: bar
+        :open_issues: 1
+        :created_at: 2010-09-11 18:02:15 -07:00
+
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://github.com:443/api/v2/yaml/user/show/bar?login=bar&token=TOKEN_STUB
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-frame-options: 
+      - deny
+      etag: 
+      - "\"cb7aea0ea9cda87409077c24deaf2f8e\""
+      x-ratelimit-limit: 
+      - "60"
+      connection: 
+      - keep-alive
+      content-type: 
+      - application/x-yaml; charset=utf-8
+      server: 
+      - nginx/1.0.4
+      date: 
+      - Tue, 25 Oct 2011 07:49:39 GMT
+      x-runtime: 
+      - 18ms
+      x-ratelimit-remaining: 
+      - "58"
+      content-length: 
+      - "371"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - 200 OK
+    body: |
+      --- 
+      user: 
+        gravatar_id: ad;lfkja
+        company: 
+        name: bar
+        created_at: "2010-08-18T10:23:19-07:00"
+        location: Seattle, WA
+        public_repo_count: 6
+        public_gist_count: 0
+        blog: http://bar.com
+        following_count: 0
+        id: 368721
+        type: Organization
+        permission: 
+        followers_count: 1
+        login: bar
+        email: opensource@bar.com
+
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://github.com:443/api/v2/yaml/issues/list/bar/authenticated/open?login=bar&token=TOKEN_STUB
+    body: 
+    headers: 
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-frame-options: 
+      - deny
+      etag: 
+      - "\"2110435607c70a1c3e20fceb0ec1ca0f\""
+      x-ratelimit-limit: 
+      - "60"
+      connection: 
+      - keep-alive
+      content-type: 
+      - application/x-yaml; charset=utf-8
+      server: 
+      - nginx/1.0.4
+      date: 
+      - Tue, 25 Oct 2011 07:49:40 GMT
+      x-runtime: 
+      - 133ms
+      x-ratelimit-remaining: 
+      - "57"
+      content-length: 
+      - "10583"
+      cache-control: 
+      - private, max-age=0, must-revalidate
+      status: 
+      - 200 OK
+    body: |
+      --- 
+      issues: 
+      - gravatar_id: ad;lfkja
+        position: 3.0
+        number: 224
+        votes: 0
+        created_at: 2010-12-28 13:03:52 -08:00
+        comments: 6
+        body: fake issue body
+        title: fake title
+        updated_at: 2011-03-25 16:25:48 -07:00
+        diff_url: https://github.com/authenticated/authenticated/pull/224.diff
+        patch_url: https://github.com/authenticated/authenticated/pull/224.patch
+        pull_request_url: https://github.com/authenticated/authenticated/pull/224
+        html_url: https://github.com/authenticated/authenticated/issues/224
+        user: bar
+        labels: 
+        - on hold
+        state: open
+      - gravatar_id: ad;lfkja
+        position: 1.0
+        number: 633
+        votes: 0
+        created_at: 2011-07-14 14:29:37 -07:00
+        comments: 0
+        body: Needs to be looked up in their docs and updated in a migration
+        title: blah, blah
+        updated_at: 2011-07-14 14:29:37 -07:00
+        html_url: https://github.com/authenticated/authenticated/issues/633
+        user: bar
+        labels: 
+        - bug
+        state: open
+
+    http_version: "1.1"
